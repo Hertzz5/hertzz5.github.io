@@ -44,6 +44,7 @@ header {
 }
 
 header h1 {
+  text-align: center;
   font-size: 3rem; /* or any large value you prefer */
   font-weight: 700; /* bold weight */
   margin-bottom: 0.5rem;
