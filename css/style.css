@@ -1,0 +1,162 @@
+/* RESET & BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  
+  /* Use Ubuntu as the main font */
+  font-family: 'Ubuntu', sans-serif;
+  color: #fefefe;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #2a2a2a;
+}
+
+#arcade-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* CONTENT STYLES */
+header {
+  width: 100%;
+  max-width: 800px;
+  margin: 1rem auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0.5rem;
+}
+
+header h1 {
+  font-size: 3rem; /* or any large value you prefer */
+  font-weight: 700; /* bold weight */
+  margin-bottom: 0.5rem;
+  color: #7be0ec;
+}
+
+.subtitle {
+  font-weight: 300;
+  text-align: center;
+}
+
+main {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  flex: 1;
+}
+
+.intro {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.profile-pic {
+  width: 400px;
+  height: 400px;
+  margin: 0 auto 2rem;
+  border-radius: 50%;
+  border: 6px solid #7be0ec;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.intro p {
+  color: #fefefe;
+}
+
+.intro a {
+  color: #7be0ec;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.intro a:hover {
+  text-decoration: underline;
+}
+
+/* SOCIAL LINKS */
+#links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: rgba(0,0,0,0.5);
+  color: #fefefe;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.link-item i {
+  font-size: 1.2rem;
+}
+
+.link-item:hover {
+  background-color: rgba(255,255,255, 0.15);
+  transform: scale(1.03);
+}
+
+.link-item:active {
+  transform: scale(0.97);
+}
+
+footer {
+  max-width: 1000px; 
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0.5rem;    
+  text-align: center;       /* optional for centered footer text */
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  main {
+    padding: 0.5rem;
+  }
+  .intro {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+  }
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+  }
+  .link-item {
+    flex-direction: column;
+  }
+}
