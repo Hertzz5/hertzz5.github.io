@@ -2,4 +2,4 @@ fab fa-twitter, Twitter, https://twitter.com/Hertzz58
 fab fa-github, GitHub, https://github.com/Hertzz5
 fab fa-bluesky, Bluesky, https://bsky.app/profile/hertzz.io
 fab fa-discord, Discord, https://discordapp.com/users/354044704540852234/
-fab fa-telegram, Telegram, https://telegram.com/hertzz5
+fab fa-telegram, Telegram, https://t.me/hertzz5
