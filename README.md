@@ -1,4 +1,4 @@
-# Hertzz the Coyote – Landing Page
+# Hertzz - Landing Page
 ## Structure
 
 - **index.html** – Main entry point (HTML structure, canvas, layout).
