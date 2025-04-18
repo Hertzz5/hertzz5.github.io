@@ -1,6 +1,4 @@
-/************************
- * 1) Load Social Links
- ************************/
+
 function loadSocialLinks() {
   const linksContainer = document.getElementById('links-container');
   const socialsFilePath = 'socials.txt';
@@ -25,22 +23,22 @@ function loadSocialLinks() {
         const title = parts[1].trim();
         const url = parts[2].trim();
 
-        // Create clickable <a>
+        
         const anchor = document.createElement('a');
         anchor.classList.add('link-item');
         anchor.href = url;
         anchor.target = '_blank';
         anchor.rel = 'noopener noreferrer';
 
-        // Icon
+      
         const iconEl = document.createElement('i');
         iconEl.className = iconClass;
 
-        // Text
+        
         const textSpan = document.createElement('span');
         textSpan.textContent = title;
 
-        // Combine
+        
         anchor.appendChild(iconEl);
         anchor.appendChild(textSpan);
         linksContainer.appendChild(anchor);
@@ -51,15 +49,13 @@ function loadSocialLinks() {
     });
 }
 
-/************************
- * 2) Animated Arcade Background
- ************************/
+
 let canvas, ctx;
 const shapes = [];
 const shapeCount = 60; // Number of shapes
 let mouseX = -9999, mouseY = -9999;
 
-// We'll track mouse hold time
+
 let mouseDownStart = 0;
 
 const shapeColors = [
@@ -68,68 +64,64 @@ const shapeColors = [
 ];
 const shapeTypes = [ 'circle', 'square', 'triangle', 'plus', 'line' ];
 
-// Repulsion constants
-const mouseRadius = 400;        // Mouse repel radius
-const mouseRepelStrength = 2.5; // Mouse repel force
-const shapeRepelMultiplier = 2.0; // How strongly shapes repel each other
+
+const mouseRadius = 400;        
+const mouseRepelStrength = 2.5; 
+const shapeRepelMultiplier = 2.0; 
 
 class Shape {
   constructor() {
-    // Basic shape properties
+    
     this.type = randomFromArray(shapeTypes);
     this.color = randomFromArray(shapeColors);
 
-    // Position
+    
     this.x = Math.random() * innerWidth;
     this.y = Math.random() * innerHeight;
 
-    // Rotation
+    
     this.rotation = Math.random() * 360;
     this.rotationSpeed = (Math.random() - 0.5) * 0.5;
 
-    // Size (treat as radius for collisions)
+   
     this.size = Math.random() * canvas.width / 30 + 15;
 
-    // Velocity & Acceleration
+    
     this.vx = (Math.random() - 0.5) * 2;
     this.vy = (Math.random() - 0.5) * 2;
     this.ax = (Math.random() - 0.5) * 0.02;
     this.ay = (Math.random() - 0.5) * 0.02;
 
-    // Speed limits
+    
     this.maxSpeed = 2.5;
     this.minSpeed = 0.3;
   }
 
-  /** 
-   * Called when the mouse is released. 
-   * We scale velocity, acceleration, rotation based on holdDuration.
-   */
+  
   boostMotion(holdDuration) {
-    // For example, let’s convert holdDuration (ms) into a factor
-    // by dividing by 300. You can tweak or clamp this as you like.
+    
     let factor = holdDuration / 300;
-    // Optionally clamp it so it doesn't get too huge:
-    factor = Math.min(factor, 10); // e.g. max factor of 10
+    
+    factor = Math.min(factor, 10); 
 
-    // Random direction, scaled by the factor
+    
     this.vx = (Math.random() - 0.5) * 2 * factor;
     this.vy = (Math.random() - 0.5) * 2 * factor;
 
-    // Accelerations also scaled
+    
     this.ax = (Math.random() - 0.5) * 0.02 * factor;
     this.ay = (Math.random() - 0.5) * 0.02 * factor;
 
-    // Rotation speed also scaled
+    
     this.rotationSpeed = (Math.random() - 0.5) * 0.5 * factor;
   }
 
   update(shapes) {
-    // 1) Apply acceleration
+    
     this.vx += this.ax;
     this.vy += this.ay;
 
-    // 2) Clamp velocity
+   
     const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
     if (speed > this.maxSpeed) {
       const scale = this.maxSpeed / speed;
@@ -141,12 +133,12 @@ class Shape {
       this.vy *= scale;
     }
 
-    // 3) Small random "wander"
+   
     const wanderStrength = 0.0008;
     this.vx += (Math.random() - 0.5) * wanderStrength;
     this.vy += (Math.random() - 0.5) * wanderStrength;
 
-    // 4) Mouse repulsion
+    
     const dxMouse = this.x - mouseX;
     const dyMouse = this.y - mouseY;
     const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
@@ -158,7 +150,7 @@ class Shape {
       this.vy += uy * force * mouseRepelStrength;
     }
 
-    // 5) Inter-shape repulsion
+    
     for (const other of shapes) {
       if (other === this) continue;
       const dx = other.x - this.x;
@@ -171,7 +163,7 @@ class Shape {
 
         const ux = dx / dist;
         const uy = dy / dist;
-        // Repel each shape
+        
         this.x -= ux * push * shapeRepelMultiplier;
         this.y -= uy * push * shapeRepelMultiplier;
         other.x += ux * push * shapeRepelMultiplier;
@@ -179,11 +171,11 @@ class Shape {
       }
     }
 
-    // 6) Move
+    
     this.x += this.vx;
     this.y += this.vy;
 
-    // 7) Bounce off walls (flip velocity)
+    
     if (this.x - this.size < 0) {
       this.x = this.size;
       this.vx = -Math.abs(this.vx);
@@ -202,7 +194,7 @@ class Shape {
       this.vy = Math.abs(this.vy) * -1;
     }
 
-    // 8) Rotation
+    
     this.rotation += this.rotationSpeed;
   }
 
@@ -250,9 +242,7 @@ function randomFromArray(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-/***************
- * SETUP CANVAS
- ***************/
+
 function setupCanvas() {
   canvas = document.getElementById('arcade-canvas');
   ctx = canvas.getContext('2d');
@@ -264,7 +254,7 @@ function setupCanvas() {
   window.addEventListener('resize', resize);
   resize();
 
-  // Mouse tracking
+  
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
@@ -274,40 +264,36 @@ function setupCanvas() {
     mouseY = -9999;
   });
 
-  // Create shapes
+  
   for (let i = 0; i < shapeCount; i++) {
     shapes.push(new Shape());
   }
 
-  // Animate
+  
   requestAnimationFrame(animate);
 }
 
-/***************
- *  MOUSE DOWN / UP
- ***************/
+
 function onMouseDown() {
   mouseDownStart = Date.now();
 }
 
 function onMouseUp() {
-  // Calculate how long mouse was held
+  
   const holdDuration = Date.now() - mouseDownStart;
-  // Give each shape a “boost” based on that duration
+  
   shapes.forEach(shape => {
     shape.boostMotion(holdDuration);
   });
 }
 
-/******************
- * ANIMATION LOOP
- ******************/
+
 function animate() {
-  // Clear background
+  
   ctx.fillStyle = '#2a2a2a';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Update & draw shapes
+  
   for (let i = 0; i < shapes.length; i++) {
     shapes[i].update(shapes);
     shapes[i].draw(ctx);
@@ -316,15 +302,12 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-/************************
- * MAIN INIT
- ************************/
+
 document.addEventListener('DOMContentLoaded', () => {
   loadSocialLinks();
   setupCanvas();
 
-  // On mousedown, record time
+  
   document.addEventListener('mousedown', onMouseDown);
-  // On mouseup, compute hold duration -> randomize shapes more
   document.addEventListener('mouseup', onMouseUp);
 });
