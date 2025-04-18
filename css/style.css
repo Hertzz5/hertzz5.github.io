@@ -1,4 +1,4 @@
-/* RESET & BASE */
+
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +10,7 @@ html, body {
   margin: 0;
   padding: 0;
   
-  /* Use Ubuntu as the main font */
+  
   font-family: 'Ubuntu', sans-serif;
   color: #fefefe;
 }
@@ -30,7 +30,7 @@ body {
   z-index: -1;
 }
 
-/* CONTENT STYLES */
+
 header {
   width: 100%;
   max-width: 800px;
@@ -45,8 +45,8 @@ header {
 
 header h1 {
   text-align: center;
-  font-size: 3rem; /* or any large value you prefer */
-  font-weight: 700; /* bold weight */
+  font-size: 3rem; 
+  font-weight: 700; 
   margin-bottom: 0.5rem;
   color: #7be0ec;
 }
@@ -101,7 +101,7 @@ main {
   text-decoration: underline;
 }
 
-/* SOCIAL LINKS */
+
 #links-container {
   display: flex;
   flex-direction: column;
@@ -141,10 +141,10 @@ footer {
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 0.5rem;    
-  text-align: center;       /* optional for centered footer text */
+  text-align: center;       
 }
 
-/* RESPONSIVE */
+
 @media (max-width: 600px) {
   main {
     padding: 0.5rem;
