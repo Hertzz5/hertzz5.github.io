@@ -8,7 +8,7 @@
   - Animated canvas background.
   - Click-and-hold momentum logic.
 - **socials.txt** – Comma-separated lines: `<icon class>, <title>, <URL>`.
-- **img/profile.jpg** – Profile image for Hertzz 
+- **img/profile.jpg** – Profile image 
 
 
 
